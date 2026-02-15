@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HALVIOR | Meme Mode</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    background:#0f0f0f;
+    color:white;
+    font-family: Arial Black, Impact, sans-serif;
+    text-align:center;
+    overflow:hidden;
+}
+
+h1{
+    margin-top:15vh;
+    font-size:50px;
+    letter-spacing:3px;
+}
+
+.subtitle{
+    opacity:0.7;
+    margin-bottom:40px;
+}
+
+button{
+    padding:15px 25px;
+    margin:10px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+.youtube{ background:red; color:white; }
+.tilt{ background:purple; color:white; }
+.algoritma{ background:orange; color:black; }
+
+.popup{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#222;
+    padding:10px 20px;
+    border-radius:8px;
+    animation:fade 2s forwards;
+}
+
+@keyframes fade{
+    0%{opacity:1;}
+    100%{opacity:0; transform:translateY(-20px);}
+}
+
+.bigText{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:40px;
+    animation:zoom 0.5s alternate infinite;
+}
+
+@keyframes zoom{
+    from{transform:translate(-50%,-50%) scale(1);}
+    to{transform:translate(-50%,-50%) scale(1.2);}
+}
+</style>
+</head>
+
+<body>
+
+<h1>HALVIOR</h1>
+<div class="subtitle">
+CS2 oynuyorum.<br>
+Bazen clutch.<br>
+Genelde tilt.
+</div>
+
+<button class="youtube" onclick="goYT()">🎥 Belki Bu Video Tutar</button>
+<button class="tilt" onclick="tiltMode()">💀 Tilt Mode</button>
+<button class="algoritma" onclick="algoritma()">🧠 Algoritma Test Ediyor</button>
+
+<script>
+
+function goYT(){
+    window.open("https://www.youtube.com/@Halvior","_blank");
+}
+
+function tiltMode(){
+    showBig("SON 3 VİDEO: 17 İZLENME");
+}
+
+function algoritma(){
+    showBig("ALGORİTMA: 'Bi Bakalım…'");
+}
+
+// Büyük yazı göster
+function showBig(text){
+    const div=document.createElement("div");
+    div.className="bigText";
+    div.innerText=text;
+    document.body.appendChild(div);
+    setTimeout(()=>{div.remove()},2000);
+}
+
+// Random +1 izlenme popup
+setInterval(()=>{
+    const p=document.createElement("div");
+    p.className="popup";
+    p.innerText="+1 izlenme (muhtemelen annem)";
+    document.body.appendChild(p);
+    setTimeout(()=>{p.remove()},2000);
+},6000);
+
+</script>
+
+</body>
+</html>
 
