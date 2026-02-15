@@ -11,22 +11,23 @@
     --main-color: #00ffcc; 
     --bg-gradient: linear-gradient(135deg, #002d2d 0%, #001a1a 50%, #004d40 100%);
     --glass: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(0, 255, 204, 0.4);
 }
 
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background: var(--bg-gradient);
-    min-height: 100vh; /* Chat sığsın diye min-height yaptık */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: white;
     overflow-x: hidden;
-    padding-bottom: 50px; /* Alttan boşluk */
+    padding-bottom: 50px;
 }
 
-/* Arka Plan Efekti */
+/* Arka Plan Hareketli Glow */
 body::before {
     content: "";
     position: fixed;
@@ -40,9 +41,9 @@ body::before {
 .container {
     text-align: center;
     z-index: 10;
-    width: 90%;
+    width: 95%;
     max-width: 900px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 h1 {
@@ -57,10 +58,10 @@ h1 {
 }
 
 .tagline {
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 3px;
     color: var(--main-color);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     opacity: 0.8;
 }
 
@@ -68,104 +69,112 @@ h1 {
 .btn-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .btn {
-    padding: 12px 25px;
+    padding: 10px 20px;
     border: 1px solid rgba(0, 255, 204, 0.2);
     background: var(--glass);
     color: white;
     text-transform: uppercase;
     font-family: 'Orbitron', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 1px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     transition: 0.3s;
     backdrop-filter: blur(10px);
-    text-decoration: none;
-    min-width: 150px;
+    min-width: 140px;
 }
 
 .btn:hover {
     background: var(--main-color);
     color: #000;
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
     transform: translateY(-2px);
 }
 
-.btn-shorts {
-    border-color: #ff0055;
-    box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
-}
-.btn-shorts:hover {
-    background: #ff0055;
-    box-shadow: 0 0 20px rgba(255, 0, 85, 0.6);
-    color: white;
-}
+.btn-shorts { border-color: #ff0055; }
+.btn-shorts:hover { background: #ff0055; color: white; }
 
-/* GERÇEK CHAT ALANI (MINNIT) */
-.real-chat-container {
+/* --- BÜTÜNLEŞİK CHAT KUTUSU (YENİ TASARIM) --- */
+.unified-chat-box {
     width: 100%;
     max-width: 850px;
+    background: #000;
     border: 2px solid var(--main-color);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.15);
-    background: rgba(0,0,0,0.6);
-    margin: 0 auto;
-}
-
-/* SAHTE BOT CHAT (SOL ALT) */
-.fake-chat-box {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 240px;
-    height: 180px;
-    background: rgba(0, 0, 0, 0.5);
-    border-left: 2px solid var(--main-color);
-    border-radius: 0 10px 10px 0;
+    border-radius: 12px; /* Köşeleri yuvarlat */
+    overflow: hidden; /* İçindekiler taşmasın */
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.2);
     display: flex;
     flex-direction: column;
-    backdrop-filter: blur(8px);
-    z-index: 100;
-    pointer-events: none; /* Tıklanmasın, sadece görsel */
 }
 
-.fake-header {
-    padding: 8px;
-    font-size: 9px;
-    font-family: 'Orbitron', sans-serif;
-    color: var(--main-color);
-    background: rgba(255,255,255,0.05);
-}
-
-.fake-content {
-    flex: 1;
-    padding: 10px;
-    overflow: hidden;
+/* ÜST BANT (BOTLAR BURADA AKACAK) */
+.ticker-bar {
+    background: rgba(0, 255, 204, 0.1); /* Hafif yeşil zemin */
+    border-bottom: 1px solid var(--border-color);
+    height: 35px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 
-.fake-msg {
+.ticker-label {
+    background: var(--main-color);
+    color: black;
+    font-weight: 900;
     font-size: 10px;
-    margin-bottom: 5px;
-    animation: slideRight 0.3s ease-out;
-    text-shadow: 0 1px 2px black;
+    padding: 0 12px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'Orbitron', sans-serif;
+    z-index: 5;
+    box-shadow: 5px 0 10px rgba(0,0,0,0.5);
 }
 
-@keyframes slideRight { from {opacity: 0; transform: translateX(-10px);} to {opacity: 1; transform: translateX(0);} }
+.ticker-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: scrollText 25s linear infinite;
+    padding-left: 10px;
+}
 
-/* Mobil Ayarı */
+.ticker-item {
+    font-size: 11px;
+    margin-right: 40px; /* Mesajlar arası boşluk */
+    color: #ddd;
+}
+
+.ticker-item span {
+    color: var(--main-color);
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    margin-right: 5px;
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Yarıya kadar kaydırıp başa döner */
+}
+
+/* GERÇEK CHAT KISMI */
+.real-chat-embed {
+    width: 100%;
+    height: 500px; /* Chat yüksekliği */
+    background: transparent;
+}
+
+/* MOBİL AYARI */
 @media (max-width: 768px) {
-    .fake-chat-box { display: none; } /* Mobilde sahte chati gizle, gerçek chat var zaten */
-    .btn { width: 45%; min-width: auto; }
+    .btn { width: 45%; font-size: 10px; }
+    .ticker-item { font-size: 10px; margin-right: 20px; }
 }
 </style>
 </head>
@@ -173,42 +182,59 @@ h1 {
 
 <div class="container">
     <h1>HALVIOR</h1>
-    <div class="tagline">OFFICIAL COMMUNITY & CHAT</div>
+    <div class="tagline">PREMIUM COMMUNITY</div>
     
     <div class="btn-group">
-        <button class="btn" onclick="window.open('https://www.youtube.com/@Halvior/videos')">Son Videolar</button>
-        <button class="btn btn-shorts" onclick="window.open('https://www.youtube.com/@Halvior/shorts')">YENİ SHORTS</button>
-        <button class="btn" onclick="window.open('https://www.youtube.com/@Halvior')">YouTube Kanalı</button>
+        <button class="btn" onclick="window.open('https://www.youtube.com/@Halvior/videos')">Videolar</button>
+        <button class="btn btn-shorts" onclick="window.open('https://www.youtube.com/@Halvior/shorts')">SHORTS</button>
+        <button class="btn" onclick="window.open('https://www.youtube.com/@Halvior')">Kanal</button>
     </div>
 
-    <div class="real-chat-container">
-        <script src="https://minnit.chat/js/embed.js?c=1758971289" defer></script>
-        <span style="display: none;" class="minnit-chat-sembed" data-chatname="https://organizations.minnit.chat/191589867626376/c/Main?embed" data-style="width:100%; height:500px; max-height:80vh;" data-version="1.55">Chat</span>
+    <div class="unified-chat-box">
+        
+        <div class="ticker-bar">
+            <div class="ticker-label">ONLINE ●</div>
+            <div class="ticker-track" id="bot-ticker">
+                </div>
         </div>
-</div>
 
-<div class="fake-chat-box">
-    <div class="fake-header">CANLI AKIŞ SİMÜLASYONU ●</div>
-    <div class="fake-content" id="fake-stream"></div>
+        <div class="real-chat-embed">
+            <script src="https://minnit.chat/js/embed.js?c=1758971289" defer></script>
+            <span style="display: none;" class="minnit-chat-sembed" data-chatname="https://organizations.minnit.chat/191589867626376/c/Main?embed" data-style="width:100%; height:100%; max-height:80vh;" data-version="1.55">Chat</span>
+        </div>
+
+    </div>
 </div>
 
 <script>
-    // Sahte Botlar (Atmosfer yaratmak için)
-    const stream = document.getElementById('fake-stream');
-    const bots = ["HalviorFan", "CS2_Pro", "ToxicKing", "MemeLord", "SilverGuy", "GlobalElite", "Edit_Kralı", "Shitposter"];
-    const texts = ["Ortadaki chat efsane olmuş", "Selam beyler", "Halvior yine yargı dağıtmış", "Shorts videosu çok iyi", "Site premium duruyor", "Mavi yeşil tema yakışmış", "Admin var mı?"];
+    // BOT MESAJLARI AYARI
+    const bots = [
+        {name: "HalviorFan", msg: "Beyler yeni video ne zaman?"},
+        {name: "CS2_Pro", msg: "Rank kasacak var mı seri?"},
+        {name: "ToxicKing", msg: "Bu site çok iyi olmuş eline sağlık."},
+        {name: "MemeLord", msg: "Admin baksana bi buraya."},
+        {name: "SilverGuy", msg: "Shorts videosundaki aim hile mi?"},
+        {name: "GlobalElite", msg: "Selamun aleyküm."},
+        {name: "Edit_Kralı", msg: "Mavi tema efsane duruyor."},
+        {name: "Shitposter", msg: "Bruh moment."},
+        {name: "SkinCollector", msg: "Bıçak çıkaran var mı?"}
+    ];
 
-    function addMsg() {
-        const b = bots[Math.floor(Math.random()*bots.length)];
-        const t = texts[Math.floor(Math.random()*texts.length)];
-        const d = document.createElement('div');
-        d.className = 'fake-msg';
-        d.innerHTML = `<span style="color:#00ffcc; font-weight:bold;">${b}:</span> ${t}`;
-        stream.appendChild(d);
-        if(stream.childElementCount > 5) stream.removeChild(stream.firstChild);
+    const tickerTrack = document.getElementById('bot-ticker');
+
+    function createTickerContent() {
+        let htmlContent = "";
+        
+        // Mesajları oluştur
+        bots.forEach(bot => {
+            htmlContent += `<div class="ticker-item"><span>${bot.name}:</span> ${bot.msg}</div>`;
+        });
+
+        // Sonsuz döngü için içeriği 4 kere kopyala yapıştır yapıyorum
+        tickerTrack.innerHTML = htmlContent + htmlContent + htmlContent + htmlContent;
     }
-    // Her 3 saniyede bir sahte mesaj
-    setInterval(addMsg, 3000);
+
+    createTickerContent();
 </script>
 
 </body>
