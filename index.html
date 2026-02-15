@@ -3,132 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HALVIOR GOD MODE</title>
+<title>HALVIOR | Premium Chaos</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-body{
+*{
     margin:0;
-    background:black;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Orbitron',sans-serif;
+    background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
     color:white;
+    height:100vh;
+    overflow-x:hidden;
+}
+
+/* Glow arkaplan efekti */
+body::before{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle,rgba(255,0,100,0.4),transparent 70%);
+    top:-200px;
+    left:-200px;
+    filter:blur(120px);
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle,rgba(0,200,255,0.4),transparent 70%);
+    bottom:-200px;
+    right:-200px;
+    filter:blur(120px);
+}
+
+.container{
     text-align:center;
-    font-family:Arial;
-    overflow:hidden;
+    padding:60px 20px;
 }
 
 h1{
-    margin-top:30px;
-    font-size:50px;
-    text-shadow:0 0 20px red;
-    animation:glitch 1s infinite;
+    font-size:60px;
+    letter-spacing:5px;
+    text-shadow:0 0 20px rgba(255,0,150,0.7);
 }
 
-button{
-    padding:15px 30px;
-    margin:10px;
+.subtitle{
+    margin-top:15px;
     font-size:18px;
-    border:none;
-    border-radius:15px;
-    background:linear-gradient(45deg, red, purple);
+    opacity:0.8;
+}
+
+/* Butonlar */
+.buttons{
+    margin-top:50px;
+}
+
+.btn{
+    display:inline-block;
+    margin:15px;
+    padding:18px 35px;
+    font-size:18px;
+    border-radius:50px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.2);
     color:white;
     cursor:pointer;
+    transition:0.3s;
+    text-decoration:none;
 }
 
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    pointer-events:none;
+.btn:hover{
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 0 25px rgba(255,0,150,0.6);
 }
 
-@keyframes glitch{
-    0%{text-shadow:2px 0 red,-2px 0 blue;}
-    20%{text-shadow:-2px 0 red,2px 0 blue;}
-    40%{text-shadow:2px 0 red,-2px 0 blue;}
-    60%{text-shadow:-2px 0 red,2px 0 blue;}
-    80%{text-shadow:2px 0 red,-2px 0 blue;}
-    100%{text-shadow:0 0 20px red;}
+/* Stat kartları */
+.stats{
+    margin-top:70px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
 }
 
-.hidden{
-    position:fixed;
-    bottom:10px;
-    right:10px;
-    opacity:0.1;
-    cursor:pointer;
+.card{
+    width:220px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.15);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.07);
+    box-shadow:0 0 30px rgba(0,200,255,0.5);
+}
+
+.card h2{
+    font-size:28px;
+}
+
+.card p{
+    margin-top:10px;
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* Footer */
+footer{
+    margin-top:80px;
+    font-size:12px;
+    opacity:0.5;
 }
 </style>
 </head>
+
 <body>
 
-<h1>🔥 HALVIOR GOD MODE 🔥</h1>
+<div class="container">
 
-<p>CS2 • Meme • Shitpost • Minecraft • Kaos</p>
+<h1>HALVIOR</h1>
+<div class="subtitle">CS2 • Meme • Shitpost • Minecraft • Premium Kaos</div>
 
-<button onclick="askPassword()">🔒 Özel Mod</button>
-<button onclick="goYT()">🚀 Kanala Git</button>
+<div class="buttons">
+<a class="btn" href="https://www.youtube.com/@Halvior" target="_blank">🚀 YouTube Kanalı</a>
+<a class="btn" onclick="memeAlert()">😂 Meme Mode</a>
+<a class="btn" onclick="secretMode()">🔒 Secret Streamer Mode</a>
+</div>
 
-<div class="hidden" onclick="bossMode()">.</div>
+<div class="stats">
+<div class="card">
+<h2>+999</h2>
+<p>Refleks Gücü</p>
+</div>
 
-<canvas id="fireCanvas"></canvas>
+<div class="card">
+<h2>%100</h2>
+<p>Clutch Potansiyeli</p>
+</div>
 
-<!-- Trap beat (telif sıkıntısız örnek beat linki) -->
-<audio id="bgm" autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6e0b63e5b9.mp3?filename=trap-beat-hip-hop-140bpm-11054.mp3" type="audio/mpeg">
-</audio>
+<div class="card">
+<h2>∞</h2>
+<p>Meme Enerjisi</p>
+</div>
+
+<div class="card">
+<h2>???</h2>
+<p>Gizli Boss Seviyesi</p>
+</div>
+</div>
+
+<footer>
+© 2026 HALVIOR — Premium Meme Experience
+</footer>
+
+</div>
 
 <script>
-/* ===== YOUTUBE ===== */
-function goYT(){
-    window.location.href="https://www.youtube.com/@Halvior";
+function memeAlert(){
+    alert("FPS düştüyse sorun PC değil... psikolojik baskı 😎");
 }
 
-/* ===== ŞİFRE MODU ===== */
-function askPassword(){
-    let pass = prompt("Şifreyi gir:");
-    if(pass === "halvior"){
-        document.body.style.background="darkred";
-        document.body.innerHTML="<h1 style='font-size:70px;'>🔥 ULTRA SECRET MODE 🔥</h1><p>FPS +999<br>Refleks +1000<br>Ego MAX</p>";
+function secretMode(){
+    let pass=prompt("Streamer kodunu gir:");
+    if(pass==="halvior"){
+        document.body.style.background="black";
+        document.body.innerHTML="<h1 style='text-align:center;margin-top:20%;font-size:70px;color:red;'>🔥 STREAMER GOD MODE 🔥</h1><p style='text-align:center;'>Chat kontrol altında.<br>Ego stabil.<br>FPS sabit.</p>";
     }else{
-        alert("Yanlış şifre 😈");
+        alert("Kod yanlış 😈");
     }
 }
-
-/* ===== BOSS MODE ===== */
-function bossMode(){
-    document.body.innerHTML="<h1 style='color:red;font-size:80px;'>👑 FINAL BOSS 👑</h1>";
-}
-
-/* ===== MOUSE ALEV İZİ ===== */
-const canvas=document.getElementById("fireCanvas");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let flames=[];
-
-document.addEventListener("mousemove",(e)=>{
-    flames.push({
-        x:e.clientX,
-        y:e.clientY,
-        size:15,
-        alpha:1
-    });
-});
-
-function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    flames.forEach((f,i)=>{
-        f.size+=1;
-        f.alpha-=0.02;
-        ctx.fillStyle="rgba(255,50,0,"+f.alpha+")";
-        ctx.beginPath();
-        ctx.arc(f.x,f.y,f.size,0,Math.PI*2);
-        ctx.fill();
-        if(f.alpha<=0) flames.splice(i,1);
-    });
-    requestAnimationFrame(animate);
-}
-animate();
 </script>
 
 </body>
