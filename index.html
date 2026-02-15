@@ -8,21 +8,66 @@
 <style>
 body{
 margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#0f0f0f;
+font-family:'Segoe UI', sans-serif;
+background:linear-gradient(135deg,#0f0f0f,#141414,#1a1a1a);
 color:white;
 text-align:center;
+overflow-x:hidden;
+}
+
+/* Glow arka plan efekti */
+body::before{
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+background:radial-gradient(circle, rgba(0,255,200,0.15), transparent 70%);
+top:-200px;
+right:-200px;
+z-index:-1;
 }
 
 h1{
-margin-top:100px;
-font-size:40px;
+margin-top:120px;
+font-size:48px;
+letter-spacing:2px;
+background:linear-gradient(90deg,#00ffe0,#00ff88);
+-webkit-background-clip:text;
+color:transparent;
 }
 
 p{
 opacity:0.7;
+font-size:18px;
+margin-bottom:40px;
 }
 
+/* Ana butonlar */
+.main-buttons{
+margin-top:20px;
+}
+
+.main-buttons button{
+margin:10px;
+padding:12px 25px;
+background:#111;
+border:1px solid #00ffcc;
+color:#00ffcc;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+box-shadow:0 0 10px rgba(0,255,200,0.3);
+}
+
+.main-buttons button:hover{
+background:#00ffcc;
+color:black;
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(0,255,200,0.7);
+}
+
+/* Oda sistemi */
 .chat-rooms{
 position:fixed;
 bottom:20px;
@@ -33,27 +78,32 @@ z-index:9999;
 .chat-rooms button{
 display:block;
 margin:6px 0;
-padding:10px 15px;
-background:#1a1a1a;
-color:white;
-border:none;
+padding:8px 14px;
+background:#111;
+color:#00ffcc;
+border:1px solid #00ffcc;
 border-radius:10px;
 cursor:pointer;
-font-weight:bold;
-transition:0.2s;
+transition:0.3s;
 }
 
 .chat-rooms button:hover{
-background:#333;
-transform:scale(1.05);
+background:#00ffcc;
+color:black;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Halvior Community</h1>
-<p>Millet burada takılır, konuşur, tartışır 👑</p>
+<h1>HALVIOR</h1>
+<p>Premium topluluk alanı 👑</p>
+
+<div class="main-buttons">
+<button onclick="window.open('https://www.youtube.com/@Halvior')">YouTube</button>
+<button onclick="alert('Yakında aktif 👀')">Topluluk</button>
+<button onclick="alert('Chat aşağıda 👇')">Canlı Sohbet</button>
+</div>
 
 <div class="chat-rooms">
 <button onclick="setRoom('genel')">Genel</button>
@@ -74,27 +124,27 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 
-<!-- BOT + ODA SİSTEMİ -->
+<!-- BOT -->
 <script>
 var currentRoom = "genel";
 
 var botDialogues = {
 genel: [
 "👋 Hoş geldin kral!",
-"Bugün ortam nasıl?",
+"Ortam premium 😎",
 "Yeni gelen var mı?",
 "Halvior tayfa burada mı?"
 ],
 cs2: [
 "🔫 Dust2 mü Inferno mu?",
-"Bugün kaç rank düştünüz?",
+"Bugün kaç win?",
 "AWP alan var mı?",
 "Clutch gelir mi?"
 ],
 meme: [
 "💀 Burası ciddi değil",
-"Shitpost serbest",
-"Meme spam zamanı",
+"Shitpost zamanı",
+"Meme spam serbest",
 "Cringe atan kim?"
 ]
 };
