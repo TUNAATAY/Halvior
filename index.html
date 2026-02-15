@@ -3,135 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HALVIOR</title>
+<title>HALVIOR GOD MODE</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-
 body{
-    height:100vh;
-    background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
-    background-size:400% 400%;
-    animation:bgMove 15s ease infinite;
-    font-family:Arial Black, Impact, sans-serif;
+    margin:0;
+    background:black;
     color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     text-align:center;
+    font-family:Arial;
     overflow:hidden;
 }
 
-@keyframes bgMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-.card{
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
-    padding:40px;
-    border-radius:20px;
-    width:90%;
-    max-width:500px;
-    box-shadow:0 0 40px rgba(0,255,255,0.2);
-}
-
 h1{
+    margin-top:30px;
     font-size:50px;
-    margin-bottom:10px;
-    text-shadow:0 0 15px cyan;
-}
-
-.subtitle{
-    font-size:16px;
-    opacity:0.8;
-    margin-bottom:30px;
+    text-shadow:0 0 20px red;
+    animation:glitch 1s infinite;
 }
 
 button{
-    width:100%;
-    padding:15px;
-    margin:10px 0;
+    padding:15px 30px;
+    margin:10px;
+    font-size:18px;
     border:none;
-    border-radius:10px;
-    font-size:16px;
+    border-radius:15px;
+    background:linear-gradient(45deg, red, purple);
+    color:white;
     cursor:pointer;
-    transition:0.2s;
 }
 
-button:hover{
-    transform:scale(1.05);
-}
-
-.yt{background:red;color:white;}
-.cs{background:#00ffff;color:black;}
-.shit{background:#ff00ff;color:white;}
-.random{background:orange;color:black;}
-
-.bigText{
+canvas{
     position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-size:35px;
-    color:#00ffff;
-    text-shadow:0 0 20px #00ffff;
-    animation:zoom 0.4s alternate infinite;
+    top:0;
+    left:0;
+    pointer-events:none;
 }
 
-@keyframes zoom{
-    from{transform:translate(-50%,-50%) scale(1);}
-    to{transform:translate(-50%,-50%) scale(1.2);}
+@keyframes glitch{
+    0%{text-shadow:2px 0 red,-2px 0 blue;}
+    20%{text-shadow:-2px 0 red,2px 0 blue;}
+    40%{text-shadow:2px 0 red,-2px 0 blue;}
+    60%{text-shadow:-2px 0 red,2px 0 blue;}
+    80%{text-shadow:2px 0 red,-2px 0 blue;}
+    100%{text-shadow:0 0 20px red;}
+}
+
+.hidden{
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    opacity:0.1;
+    cursor:pointer;
 }
 </style>
 </head>
-
 <body>
 
-<div class="card">
-    <h1>HALVIOR</h1>
-    <div class="subtitle">
-        CS2 oynuyorum.<br>
-        Shitpost var.<br>
-        Meme var.<br>
-        Minecraft bile var.<br>
-        Ne ararsan var.
-    </div>
+<h1>🔥 HALVIOR GOD MODE 🔥</h1>
 
-    <button class="yt" onclick="goYT()">🎥 YouTube</button>
-    <button class="cs" onclick="popup('CS2 MODE: AKIL SAĞLIĞI AZALIYOR')">🎮 CS2 Mode</button>
-    <button class="shit" onclick="popup('SHITPOST SEVİYESİ: TEHLİKELİ')">💀 Shitpost Mode</button>
-    <button class="random" onclick="randomPopup()">🧠 Algoritma Testi</button>
-</div>
+<p>CS2 • Meme • Shitpost • Minecraft • Kaos</p>
+
+<button onclick="askPassword()">🔒 Özel Mod</button>
+<button onclick="goYT()">🚀 Kanala Git</button>
+
+<div class="hidden" onclick="bossMode()">.</div>
+
+<canvas id="fireCanvas"></canvas>
+
+<!-- Trap beat (telif sıkıntısız örnek beat linki) -->
+<audio id="bgm" autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6e0b63e5b9.mp3?filename=trap-beat-hip-hop-140bpm-11054.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-
+/* ===== YOUTUBE ===== */
 function goYT(){
-    window.open("https://www.youtube.com/@Halvior","_blank");
+    window.location.href="https://www.youtube.com/@Halvior";
 }
 
-function popup(text){
-    const div=document.createElement("div");
-    div.className="bigText";
-    div.innerText=text;
-    document.body.appendChild(div);
-    setTimeout(()=>{div.remove()},2000);
+/* ===== ŞİFRE MODU ===== */
+function askPassword(){
+    let pass = prompt("Şifreyi gir:");
+    if(pass === "halvior"){
+        document.body.style.background="darkred";
+        document.body.innerHTML="<h1 style='font-size:70px;'>🔥 ULTRA SECRET MODE 🔥</h1><p>FPS +999<br>Refleks +1000<br>Ego MAX</p>";
+    }else{
+        alert("Yanlış şifre 😈");
+    }
 }
 
-const phrases=[
-"Bugün 17 izlenme yarın 2K.",
-"Algoritma beni deniyor.",
-"Minecraft bile var dedik.",
-"CS2 ama ciddi değil.",
-"Ne ararsan var dedik."
-];
-
-function randomPopup(){
-    popup(phrases[Math.floor(Math.random()*phrases.length)]);
+/* ===== BOSS MODE ===== */
+function bossMode(){
+    document.body.innerHTML="<h1 style='color:red;font-size:80px;'>👑 FINAL BOSS 👑</h1>";
 }
 
+/* ===== MOUSE ALEV İZİ ===== */
+const canvas=document.getElementById("fireCanvas");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let flames=[];
+
+document.addEventListener("mousemove",(e)=>{
+    flames.push({
+        x:e.clientX,
+        y:e.clientY,
+        size:15,
+        alpha:1
+    });
+});
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    flames.forEach((f,i)=>{
+        f.size+=1;
+        f.alpha-=0.02;
+        ctx.fillStyle="rgba(255,50,0,"+f.alpha+")";
+        ctx.beginPath();
+        ctx.arc(f.x,f.y,f.size,0,Math.PI*2);
+        ctx.fill();
+        if(f.alpha<=0) flames.splice(i,1);
+    });
+    requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
