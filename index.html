@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HALVIOR | Premium Chaos</title>
+<title>HALVIOR</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -15,54 +15,39 @@
 }
 
 body{
-    font-family:'Orbitron',sans-serif;
-    background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     color:white;
-    height:100vh;
-    overflow-x:hidden;
-}
-
-/* Glow arkaplan efekti */
-body::before{
-    content:"";
-    position:fixed;
-    width:600px;
-    height:600px;
-    background:radial-gradient(circle,rgba(255,0,100,0.4),transparent 70%);
-    top:-200px;
-    left:-200px;
-    filter:blur(120px);
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    width:600px;
-    height:600px;
-    background:radial-gradient(circle,rgba(0,200,255,0.4),transparent 70%);
-    bottom:-200px;
-    right:-200px;
-    filter:blur(120px);
+    min-height:100vh;
 }
 
 .container{
     text-align:center;
-    padding:60px 20px;
+    padding:70px 20px;
 }
 
 h1{
-    font-size:60px;
-    letter-spacing:5px;
-    text-shadow:0 0 20px rgba(255,0,150,0.7);
+    font-family:'Orbitron',sans-serif;
+    font-size:55px;
+    letter-spacing:3px;
 }
 
 .subtitle{
     margin-top:15px;
     font-size:18px;
-    opacity:0.8;
+    opacity:0.85;
 }
 
-/* Butonlar */
+.about{
+    margin-top:40px;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:16px;
+    line-height:1.6;
+    opacity:0.9;
+}
+
 .buttons{
     margin-top:50px;
 }
@@ -70,26 +55,23 @@ h1{
 .btn{
     display:inline-block;
     margin:15px;
-    padding:18px 35px;
-    font-size:18px;
-    border-radius:50px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(10px);
+    padding:15px 30px;
+    border-radius:40px;
+    background:rgba(255,255,255,0.1);
     border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(8px);
     color:white;
-    cursor:pointer;
-    transition:0.3s;
     text-decoration:none;
+    transition:0.3s;
 }
 
 .btn:hover{
-    transform:translateY(-5px) scale(1.05);
-    box-shadow:0 0 25px rgba(255,0,150,0.6);
+    transform:translateY(-4px);
+    box-shadow:0 0 20px rgba(0,200,255,0.5);
 }
 
-/* Stat kartları */
-.stats{
-    margin-top:70px;
+.cards{
+    margin-top:60px;
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
@@ -100,32 +82,30 @@ h1{
     width:220px;
     padding:25px;
     border-radius:20px;
-    background:rgba(255,255,255,0.05);
+    background:rgba(255,255,255,0.08);
     backdrop-filter:blur(12px);
     border:1px solid rgba(255,255,255,0.15);
     transition:0.3s;
 }
 
 .card:hover{
-    transform:scale(1.07);
-    box-shadow:0 0 30px rgba(0,200,255,0.5);
+    transform:scale(1.05);
 }
 
 .card h2{
-    font-size:28px;
+    font-size:26px;
 }
 
 .card p{
-    margin-top:10px;
+    margin-top:8px;
     font-size:14px;
     opacity:0.8;
 }
 
-/* Footer */
 footer{
     margin-top:80px;
     font-size:12px;
-    opacity:0.5;
+    opacity:0.6;
 }
 </style>
 </head>
@@ -135,55 +115,51 @@ footer{
 <div class="container">
 
 <h1>HALVIOR</h1>
-<div class="subtitle">CS2 • Meme • Shitpost • Minecraft • Premium Kaos</div>
+<div class="subtitle">CS2 • Meme • Minecraft • Eğlence</div>
+
+<div class="about">
+Selam 👋<br><br>
+Ben sadece oyun oynayan biri değilim, eğlenmeyi seven biriyim.
+CS2 oynuyorum, bazen saçmalıyorum, bazen ciddiyim ama her zaman doğalım.
+Burada amaç sadece kazanmak değil — keyif almak.
+</div>
 
 <div class="buttons">
 <a class="btn" href="https://www.youtube.com/@Halvior" target="_blank">🚀 YouTube Kanalı</a>
-<a class="btn" onclick="memeAlert()">😂 Meme Mode</a>
-<a class="btn" onclick="secretMode()">🔒 Secret Streamer Mode</a>
+<a class="btn" onclick="hello()">💬 Selam De</a>
 </div>
 
-<div class="stats">
+<div class="cards">
 <div class="card">
-<h2>+999</h2>
-<p>Refleks Gücü</p>
-</div>
-
-<div class="card">
-<h2>%100</h2>
-<p>Clutch Potansiyeli</p>
+<h2>🎮</h2>
+<p>CS2 odaklı içerik</p>
 </div>
 
 <div class="card">
-<h2>∞</h2>
-<p>Meme Enerjisi</p>
+<h2>😂</h2>
+<p>Meme & Shitpost anlar</p>
 </div>
 
 <div class="card">
-<h2>???</h2>
-<p>Gizli Boss Seviyesi</p>
+<h2>🔥</h2>
+<p>Gerçek, filtresiz enerji</p>
+</div>
+
+<div class="card">
+<h2>🤝</h2>
+<p>Samimi topluluk</p>
 </div>
 </div>
 
 <footer>
-© 2026 HALVIOR — Premium Meme Experience
+© 2026 HALVIOR — Just vibes.
 </footer>
 
 </div>
 
 <script>
-function memeAlert(){
-    alert("FPS düştüyse sorun PC değil... psikolojik baskı 😎");
-}
-
-function secretMode(){
-    let pass=prompt("Streamer kodunu gir:");
-    if(pass==="halvior"){
-        document.body.style.background="black";
-        document.body.innerHTML="<h1 style='text-align:center;margin-top:20%;font-size:70px;color:red;'>🔥 STREAMER GOD MODE 🔥</h1><p style='text-align:center;'>Chat kontrol altında.<br>Ego stabil.<br>FPS sabit.</p>";
-    }else{
-        alert("Kod yanlış 😈");
-    }
+function hello(){
+    alert("Hoş geldin 👋 Kanalda görüşürüz!");
 }
 </script>
 
