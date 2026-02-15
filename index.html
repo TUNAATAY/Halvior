@@ -3,84 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HALVIOR | CS2 Shitpost</title>
+<title>HALVIOR</title>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
 body{
-    margin:0;
-    padding:0;
-    background:#0a0a0a;
+    height:100vh;
+    background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+    background-size:400% 400%;
+    animation:bgMove 15s ease infinite;
+    font-family:Arial Black, Impact, sans-serif;
     color:white;
-    font-family: 'Arial Black', Impact, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
     overflow:hidden;
 }
 
-/* Neon Başlık */
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    padding:40px;
+    border-radius:20px;
+    width:90%;
+    max-width:500px;
+    box-shadow:0 0 40px rgba(0,255,255,0.2);
+}
+
 h1{
-    margin-top:15vh;
-    font-size:60px;
-    letter-spacing:5px;
-    color:#00ffff;
-    text-shadow:0 0 10px #00ffff, 0 0 20px #00ffff;
+    font-size:50px;
+    margin-bottom:10px;
+    text-shadow:0 0 15px cyan;
 }
 
-/* Alt yazı */
 .subtitle{
-    margin-top:10px;
-    font-size:18px;
+    font-size:16px;
     opacity:0.8;
+    margin-bottom:30px;
 }
 
-/* Butonlar */
 button{
-    margin:15px;
-    padding:15px 30px;
-    font-size:16px;
+    width:100%;
+    padding:15px;
+    margin:10px 0;
     border:none;
     border-radius:10px;
+    font-size:16px;
     cursor:pointer;
     transition:0.2s;
 }
 
 button:hover{
-    transform:scale(1.1);
+    transform:scale(1.05);
 }
 
-.youtube{
-    background:red;
-    color:white;
-    box-shadow:0 0 10px red;
-}
+.yt{background:red;color:white;}
+.cs{background:#00ffff;color:black;}
+.shit{background:#ff00ff;color:white;}
+.random{background:orange;color:black;}
 
-.random{
-    background:#00ffff;
-    color:black;
-    box-shadow:0 0 10px #00ffff;
-}
-
-/* Floating words */
-.floating{
-    position:absolute;
-    font-size:14px;
-    opacity:0.3;
-    animation:float 6s linear infinite;
-}
-
-@keyframes float{
-    0%{transform:translateY(100vh);}
-    100%{transform:translateY(-10vh);}
-}
-
-/* Big popup */
 .bigText{
     position:fixed;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    font-size:40px;
-    color:#ff00ff;
-    text-shadow:0 0 15px #ff00ff;
+    font-size:35px;
+    color:#00ffff;
+    text-shadow:0 0 20px #00ffff;
     animation:zoom 0.4s alternate infinite;
 }
 
@@ -93,20 +90,21 @@ button:hover{
 
 <body>
 
-<h1>HALVIOR</h1>
+<div class="card">
+    <h1>HALVIOR</h1>
+    <div class="subtitle">
+        CS2 oynuyorum.<br>
+        Shitpost var.<br>
+        Meme var.<br>
+        Minecraft bile var.<br>
+        Ne ararsan var.
+    </div>
 
-<div class="subtitle">
-CS2 oynuyorum.<br>
-Shitpost var.<br>
-Meme var.<br>
-Minecraft bile var.<br>
-Ne ararsan var.
+    <button class="yt" onclick="goYT()">🎥 YouTube</button>
+    <button class="cs" onclick="popup('CS2 MODE: AKIL SAĞLIĞI AZALIYOR')">🎮 CS2 Mode</button>
+    <button class="shit" onclick="popup('SHITPOST SEVİYESİ: TEHLİKELİ')">💀 Shitpost Mode</button>
+    <button class="random" onclick="randomPopup()">🧠 Algoritma Testi</button>
 </div>
-
-<br>
-
-<button class="youtube" onclick="goYT()">🎥 YouTube</button>
-<button class="random" onclick="randomMode()">💀 Random Mode</button>
 
 <script>
 
@@ -114,21 +112,7 @@ function goYT(){
     window.open("https://www.youtube.com/@Halvior","_blank");
 }
 
-const phrases = [
-"CS2 ama ciddi değil.",
-"Shitpost seviyesi: Tehlikeli.",
-"Algoritma beni test ediyor.",
-"Minecraft bile var dedik.",
-"Ne ararsan var dedik.",
-"Bugün 17 izlenme yarın 2K."
-];
-
-function randomMode(){
-    const text = phrases[Math.floor(Math.random()*phrases.length)];
-    showBig(text);
-}
-
-function showBig(text){
+function popup(text){
     const div=document.createElement("div");
     div.className="bigText";
     div.innerText=text;
@@ -136,16 +120,17 @@ function showBig(text){
     setTimeout(()=>{div.remove()},2000);
 }
 
-/* Arka plan random yazılar */
-const words = ["CS2", "SHITPOST", "MEME", "MINECRAFT", "HALVIOR"];
-setInterval(()=>{
-    const span=document.createElement("span");
-    span.className="floating";
-    span.innerText=words[Math.floor(Math.random()*words.length)];
-    span.style.left=Math.random()*100+"vw";
-    document.body.appendChild(span);
-    setTimeout(()=>{span.remove()},6000);
-},800);
+const phrases=[
+"Bugün 17 izlenme yarın 2K.",
+"Algoritma beni deniyor.",
+"Minecraft bile var dedik.",
+"CS2 ama ciddi değil.",
+"Ne ararsan var dedik."
+];
+
+function randomPopup(){
+    popup(phrases[Math.floor(Math.random()*phrases.length)]);
+}
 
 </script>
 
