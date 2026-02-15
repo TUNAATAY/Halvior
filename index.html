@@ -3,115 +3,242 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Halvior Community</title>
+<title>Halvior Community Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-body{
-margin:0;
-font-family:'Segoe UI', sans-serif;
-background:linear-gradient(135deg,#0f0f0f,#141414,#1a1a1a);
-color:white;
-text-align:center;
-overflow-x:hidden;
+/* HALVİOR */
+:root {
+    --neon-green: #00ffcc;
+    --neon-blue: #00aaff;
+    --dark-bg: #0a0a0a;
+    --glass: rgba(255, 255, 255, 0.05);
 }
 
-/* Glow arka plan efekti */
-body::before{
-content:"";
-position:fixed;
-width:600px;
-height:600px;
-background:radial-gradient(circle, rgba(0,255,200,0.15), transparent 70%);
-top:-200px;
-right:-200px;
-z-index:-1;
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-bg);
+    color: white;
+    overflow: hidden; /* Taşmayı engelle */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-h1{
-margin-top:120px;
-font-size:48px;
-letter-spacing:2px;
-background:linear-gradient(90deg,#00ffe0,#00ff88);
--webkit-background-clip:text;
-color:transparent;
+/* Hareketli Arka Plan */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(0, 255, 204, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0, 170, 255, 0.08), transparent 25%);
+    z-index: -2;
+    animation: pulseBg 10s infinite alternate;
 }
 
-p{
-opacity:0.7;
-font-size:18px;
-margin-bottom:40px;
+@keyframes pulseBg {
+    0% { opacity: 0.8; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.1); }
 }
 
-/* Ana butonlar */
-.main-buttons{
-margin-top:20px;
+/* Grid Efekti */
+.grid-overlay {
+    position: absolute;
+    width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+    mask-image: radial-gradient(circle, black 40%, transparent 80%);
 }
 
-.main-buttons button{
-margin:10px;
-padding:12px 25px;
-background:#111;
-border:1px solid #00ffcc;
-color:#00ffcc;
-border-radius:12px;
-cursor:pointer;
-font-weight:bold;
-transition:0.3s;
-box-shadow:0 0 10px rgba(0,255,200,0.3);
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 64px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 0;
+    background: linear-gradient(90deg, #fff, var(--neon-green));
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+    animation: glitch 3s infinite;
 }
 
-.main-buttons button:hover{
-background:#00ffcc;
-color:black;
-transform:scale(1.05);
-box-shadow:0 0 20px rgba(0,255,200,0.7);
+p.subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
 }
 
-/* Oda sistemi */
-.chat-rooms{
-position:fixed;
-bottom:20px;
-left:20px;
-z-index:9999;
+/* Buton Tasarımları (Glassmorphism) */
+.main-buttons {
+    display: flex;
+    gap: 20px;
+    z-index: 10;
 }
 
-.chat-rooms button{
-display:block;
-margin:6px 0;
-padding:8px 14px;
-background:#111;
-color:#00ffcc;
-border:1px solid #00ffcc;
-border-radius:10px;
-cursor:pointer;
-transition:0.3s;
+.glow-btn {
+    padding: 15px 40px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    color: var(--neon-green);
+    background: var(--glass);
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
 }
 
-.chat-rooms button:hover{
-background:#00ffcc;
-color:black;
+.glow-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.glow-btn:hover::before {
+    left: 100%;
+}
+
+.glow-btn:hover {
+    background: rgba(0, 255, 204, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.4);
+    transform: translateY(-3px);
+    color: white;
+}
+
+/* SAHTE BOT CHAT KUTUSU (Sol Taraf) */
+.fake-chat-container {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 280px;
+    height: 400px;
+    background: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.6) 100%);
+    border-left: 2px solid var(--neon-green);
+    backdrop-filter: blur(5px);
+    border-radius: 0 15px 15px 0;
+    padding: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+}
+
+.fake-chat-header {
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    padding: 10px;
+    font-size: 12px;
+    color: var(--neon-green);
+    font-family: 'Orbitron', sans-serif;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.8);
+    box-sizing: border-box;
+}
+
+.chat-message {
+    font-size: 12px;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeInSlide 0.5s forwards;
+    text-shadow: 0 1px 2px black;
+}
+
+.chat-user {
+    font-weight: bold;
+    color: var(--neon-blue);
+    margin-right: 5px;
+}
+
+.chat-text {
+    color: #ddd;
+}
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Oda Seçici (Sağ Alt) */
+.room-selector {
+    position: fixed;
+    bottom: 30px;
+    right: 100px; /* Tawk'ın yanına */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+}
+
+.room-btn {
+    background: rgba(0,0,0,0.8);
+    border: 1px solid #333;
+    color: #888;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+    text-align: right;
+}
+
+.room-btn:hover, .room-btn.active {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+    padding-right: 25px;
+}
+
+/* Mobil Uyum */
+@media(max-width: 768px) {
+    .fake-chat-container { display: none; } /* Mobilde kalabalık etmesin */
+    h1 { font-size: 36px; }
 }
 </style>
 </head>
 
 <body>
 
-<h1>HALVIOR</h1>
-<p>Premium topluluk alanı 👑</p>
+<div class="grid-overlay"></div>
 
-<div class="main-buttons">
-<button onclick="window.open('https://www.youtube.com/@Halvior')">YouTube</button>
-<button onclick="alert('Yakında aktif 👀')">Topluluk</button>
-<button onclick="alert('Chat aşağıda 👇')">Canlı Sohbet</button>
+<div>
+    <h1>HALVIOR</h1>
+    <p class="subtitle">/// ELITE COMMUNITY ACCESS ///</p>
+
+    <div class="main-buttons">
+        <button class="glow-btn" onclick="window.open('https://www.youtube.com/@Halvior')">YOUTUBE</button>
+        <button class="glow-btn" onclick="alert('Yakında aktif 👀')">TOPLULUK</button>
+        <button class="glow-btn" onclick="Tawk_API.toggle()">CANLI DESTEK</button>
+    </div>
 </div>
 
-<div class="chat-rooms">
-<button onclick="setRoom('genel')">Genel</button>
-<button onclick="setRoom('cs2')">CS2</button>
-<button onclick="setRoom('meme')">Meme</button>
+<div class="fake-chat-container" id="chatFeed">
+    <div class="fake-chat-header">🔴 CANLI AKIŞ: <span id="roomName">GENEL</span></div>
+    </div>
+
+<div class="room-selector">
+    <button class="room-btn active" onclick="changeRoom('genel', this)"># GENEL</button>
+    <button class="room-btn" onclick="changeRoom('cs2', this)"># CS2_RANKED</button>
+    <button class="room-btn" onclick="changeRoom('meme', this)"># SHITPOST</button>
 </div>
 
-<!-- TAWK -->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -124,45 +251,82 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 
-<!-- BOT -->
 <script>
-var currentRoom = "genel";
+    // Oda Değişkenleri
+    let currentRoom = "genel";
+    const feed = document.getElementById('chatFeed');
+    const roomLabel = document.getElementById('roomName');
 
-var botDialogues = {
-genel: [
-"👋 Hoş geldin kral!",
-"Ortam premium 😎",
-"Yeni gelen var mı?",
-"Halvior tayfa burada mı?"
-],
-cs2: [
-"🔫 Dust2 mü Inferno mu?",
-"Bugün kaç win?",
-"AWP alan var mı?",
-"Clutch gelir mi?"
-],
-meme: [
-"💀 Burası ciddi değil",
-"Shitpost zamanı",
-"Meme spam serbest",
-"Cringe atan kim?"
-]
-};
+    // Bot Veritabanı
+    const botUsers = [
+        "HalviorFan_01", "CS2_Slayer", "ToxicHunter", "MemeLord", 
+        "Anonim_User", "KebabEnjoyer", "SilverElite", "Mod_Bot"
+    ];
 
-function setRoom(room){
-currentRoom = room;
-alert("Oda değişti: " + room);
-}
+    const messages = {
+        genel: [
+            "Selam beyler", "Halvior yeni video attı mı?", "Bu site çok iyi olmuş", 
+            "Admin var mı?", "Sa", "As", "Premium üyelik ne zaman?", "Burası baya kalabalık he"
+        ],
+        cs2: [
+            "Dust2 giren var mı?", "Ruslar yüzünden rank düştüm aq", "Sadece Deagle challenge?", 
+            "AWP droplayan var mı?", "Hile dolu oyun ya", "Faceit 10 lvl olan?", "Rush B cyka"
+        ],
+        meme: [
+            "Bruh moment", "Olm çok iyi şaka", "Shitpost saati", "Cringe seviyesi %100", 
+            "Vine thud sesi...", "💀💀💀", "Bunu editlemem lazım"
+        ]
+    };
 
-function sendBotMessage(){
-if(typeof Tawk_API !== "undefined"){
-var messages = botDialogues[currentRoom];
-var random = messages[Math.floor(Math.random()*messages.length)];
-console.log("Bot:", random);
-}
-}
+    // Rastgele Mesaj Üretici
+    function addFakeMessage() {
+        // Rastgele kullanıcı ve mesaj seç
+        const user = botUsers[Math.floor(Math.random() * botUsers.length)];
+        const text = messages[currentRoom][Math.floor(Math.random() * messages[currentRoom].length)];
+        
+        // Rengi ayarla (Adminleri farklı yapabiliriz ilerde)
+        const color = user.includes("Mod") ? "#ff0055" : "var(--neon-blue)";
 
-setInterval(sendBotMessage, 20000);
+        // HTML oluştur
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'chat-message';
+        msgDiv.innerHTML = `<span class="chat-user" style="color:${color}">[${user}]:</span> <span class="chat-text">${text}</span>`;
+        
+        // Ekle
+        feed.appendChild(msgDiv);
+
+        // Çok birikirse üstten sil
+        if(feed.childElementCount > 8) {
+            feed.removeChild(feed.children[1]); // Header hariç ilk mesajı sil
+        }
+    }
+
+    // Odayı Değiştirme Fonksiyonu
+    function changeRoom(room, btn) {
+        currentRoom = room;
+        roomLabel.innerText = room.toUpperCase();
+        
+        // Buton stillerini güncelle
+        document.querySelectorAll('.room-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Odaya giriş mesajı
+        const sysDiv = document.createElement('div');
+        sysDiv.className = 'chat-message';
+        sysDiv.innerHTML = `<span style="color:yellow">SYSTEM:</span> <span style="color:#888">Oda değiştirildi: ${room}</span>`;
+        feed.appendChild(sysDiv);
+    }
+
+    // Botları Başlat (Her 2-4 saniyede bir mesaj)
+    setInterval(() => {
+        addFakeMessage();
+    }, 2500);
+
+    // Tawk.to yüklendiğinde simgeyi özelleştir (Opsiyonel)
+    Tawk_API.onLoad = function(){
+        // Tawk API yüklendi
+    };
+
 </script>
 
 </body>
