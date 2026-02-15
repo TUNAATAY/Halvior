@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HALVIOR</title>
+<title>HALVIOR | Community</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -19,6 +19,30 @@ body{
     background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     color:white;
     min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* Glow arkaplan */
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,rgba(255,0,150,0.3),transparent 70%);
+    top:-150px;
+    left:-150px;
+    filter:blur(120px);
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,rgba(0,200,255,0.3),transparent 70%);
+    bottom:-150px;
+    right:-150px;
+    filter:blur(120px);
 }
 
 .container{
@@ -29,7 +53,8 @@ body{
 h1{
     font-family:'Orbitron',sans-serif;
     font-size:55px;
-    letter-spacing:3px;
+    letter-spacing:4px;
+    text-shadow:0 0 20px rgba(0,200,255,0.6);
 }
 
 .subtitle{
@@ -40,7 +65,7 @@ h1{
 
 .about{
     margin-top:40px;
-    max-width:600px;
+    max-width:650px;
     margin-left:auto;
     margin-right:auto;
     font-size:16px;
@@ -55,23 +80,24 @@ h1{
 .btn{
     display:inline-block;
     margin:15px;
-    padding:15px 30px;
-    border-radius:40px;
+    padding:16px 35px;
+    border-radius:50px;
     background:rgba(255,255,255,0.1);
     border:1px solid rgba(255,255,255,0.2);
-    backdrop-filter:blur(8px);
+    backdrop-filter:blur(10px);
     color:white;
     text-decoration:none;
     transition:0.3s;
+    font-weight:600;
 }
 
 .btn:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 20px rgba(0,200,255,0.5);
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 0 25px rgba(0,200,255,0.6);
 }
 
 .cards{
-    margin-top:60px;
+    margin-top:70px;
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
@@ -89,7 +115,8 @@ h1{
 }
 
 .card:hover{
-    transform:scale(1.05);
+    transform:scale(1.07);
+    box-shadow:0 0 25px rgba(255,0,150,0.5);
 }
 
 .card h2{
@@ -115,52 +142,58 @@ footer{
 <div class="container">
 
 <h1>HALVIOR</h1>
-<div class="subtitle">CS2 • Meme • Minecraft • Eğlence</div>
+<div class="subtitle">CS2 • Meme • Minecraft • Community</div>
 
 <div class="about">
-Selam 👋<br><br>
-Ben sadece oyun oynayan biri değilim, eğlenmeyi seven biriyim.
-CS2 oynuyorum, bazen saçmalıyorum, bazen ciddiyim ama her zaman doğalım.
-Burada amaç sadece kazanmak değil — keyif almak.
+Hoş geldin 👋<br><br>
+Burası sadece izleme yeri değil, muhabbet ortamı.
+Yaz, tartış, takıl. Topluluk burada başlıyor.
 </div>
 
 <div class="buttons">
 <a class="btn" href="https://www.youtube.com/@Halvior" target="_blank">🚀 YouTube Kanalı</a>
-<a class="btn" onclick="hello()">💬 Selam De</a>
+<a class="btn" onclick="alert('Hoş geldin 👑 Ortam burada başlıyor!')">💬 Selam Ver</a>
 </div>
 
 <div class="cards">
 <div class="card">
 <h2>🎮</h2>
-<p>CS2 odaklı içerik</p>
+<p>CS2 içerikleri</p>
 </div>
 
 <div class="card">
 <h2>😂</h2>
-<p>Meme & Shitpost anlar</p>
+<p>Meme & saçma anlar</p>
 </div>
 
 <div class="card">
 <h2>🔥</h2>
-<p>Gerçek, filtresiz enerji</p>
+<p>Gerçek enerji</p>
 </div>
 
 <div class="card">
 <h2>🤝</h2>
-<p>Samimi topluluk</p>
+<p>Topluluk ortamı</p>
 </div>
 </div>
 
 <footer>
-© 2026 HALVIOR — Just vibes.
+© 2026 HALVIOR — Community Hub
 </footer>
 
 </div>
 
-<script>
-function hello(){
-    alert("Hoş geldin 👋 Kanalda görüşürüz!");
-}
+<!-- Tawk Chat Entegrasyonu -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6991af8aa37ee31c36e22e8b/1jhghbd50';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
 </script>
 
 </body>
