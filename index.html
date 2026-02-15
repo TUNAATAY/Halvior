@@ -1,199 +1,149 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HALVIOR | Community</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Halvior Topluluk</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
-    font-family:'Poppins',sans-serif;
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    background:#0f0f0f;
     color:white;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-/* Glow arkaplan */
-body::before{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:radial-gradient(circle,rgba(255,0,150,0.3),transparent 70%);
-    top:-150px;
-    left:-150px;
-    filter:blur(120px);
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:radial-gradient(circle,rgba(0,200,255,0.3),transparent 70%);
-    bottom:-150px;
-    right:-150px;
-    filter:blur(120px);
-}
-
-.container{
+    font-family:Arial;
     text-align:center;
-    padding:70px 20px;
 }
 
-h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:55px;
-    letter-spacing:4px;
-    text-shadow:0 0 20px rgba(0,200,255,0.6);
+#chatbox{
+    width:90%;
+    max-width:600px;
+    height:400px;
+    margin:20px auto;
+    background:#1a1a1a;
+    padding:10px;
+    overflow-y:scroll;
+    border-radius:10px;
+    text-align:left;
 }
 
-.subtitle{
-    margin-top:15px;
-    font-size:18px;
-    opacity:0.85;
+input{
+    padding:10px;
+    width:65%;
 }
 
-.about{
-    margin-top:40px;
-    max-width:650px;
-    margin-left:auto;
-    margin-right:auto;
-    font-size:16px;
-    line-height:1.6;
-    opacity:0.9;
+button{
+    padding:10px;
+    cursor:pointer;
 }
 
-.buttons{
-    margin-top:50px;
-}
+.message{margin:8px 0;}
+.bot{color:#00ff99;}
+.user{color:#00bfff;}
+.system{color:orange;}
 
-.btn{
-    display:inline-block;
-    margin:15px;
-    padding:16px 35px;
-    border-radius:50px;
-    background:rgba(255,255,255,0.1);
-    border:1px solid rgba(255,255,255,0.2);
-    backdrop-filter:blur(10px);
-    color:white;
-    text-decoration:none;
-    transition:0.3s;
-    font-weight:600;
-}
-
-.btn:hover{
-    transform:translateY(-5px) scale(1.05);
-    box-shadow:0 0 25px rgba(0,200,255,0.6);
-}
-
-.cards{
-    margin-top:70px;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
-}
-
-.card{
-    width:220px;
-    padding:25px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,0.15);
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:scale(1.07);
-    box-shadow:0 0 25px rgba(255,0,150,0.5);
-}
-
-.card h2{
-    font-size:26px;
-}
-
-.card p{
-    margin-top:8px;
-    font-size:14px;
-    opacity:0.8;
-}
-
-footer{
-    margin-top:80px;
-    font-size:12px;
-    opacity:0.6;
+#stats{
+    margin-top:10px;
 }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<h2>🔥 Halvior Topluluk Sohbeti 🔥</h2>
 
-<h1>HALVIOR</h1>
-<div class="subtitle">CS2 • Meme • Minecraft • Community</div>
-
-<div class="about">
-Hoş geldin 👋<br><br>
-Burası sadece izleme yeri değil, muhabbet ortamı.
-Yaz, tartış, takıl. Topluluk burada başlıyor.
+<div id="stats">
+Seviye: <span id="level">1</span> |
+XP: <span id="xp">0</span> |
+Mesaj: <span id="msgCount">0</span>
 </div>
 
-<div class="buttons">
-<a class="btn" href="https://www.youtube.com/@Halvior" target="_blank">🚀 YouTube Kanalı</a>
-<a class="btn" onclick="alert('Hoş geldin 👑 Ortam burada başlıyor!')">💬 Selam Ver</a>
-</div>
+<div id="chatbox"></div>
 
-<div class="cards">
-<div class="card">
-<h2>🎮</h2>
-<p>CS2 içerikleri</p>
-</div>
+<input type="text" id="input" placeholder="Bir şey yaz...">
+<button onclick="send()">Gönder</button>
 
-<div class="card">
-<h2>😂</h2>
-<p>Meme & saçma anlar</p>
-</div>
+<script>
 
-<div class="card">
-<h2>🔥</h2>
-<p>Gerçek enerji</p>
-</div>
+let xp = 0;
+let level = 1;
+let msgCount = 0;
 
-<div class="card">
-<h2>🤝</h2>
-<p>Topluluk ortamı</p>
-</div>
-</div>
+let chat = document.getElementById("chatbox");
 
-<footer>
-© 2026 HALVIOR — Community Hub
-</footer>
+const badWords = ["orospu","amk","sik","yarrak","piç","aq"];
 
-</div>
+const bots = [
+    {name:"AdminBot", replies:["Düzgün konuşalım gençler 👀","Chat ısınıyor 🔥","Devam edin bakıyorum 😎"]},
+    {name:"ClutchBot", replies:["Clutch potansiyeli sezdim 👑","Bu mesaj round kazandırır 😄","Focus 🔥"]},
+    {name:"SohbetBot", replies:["Buna katılan var mı?","Fikir güzel 👌","Bu konu büyür 👀"]},
+    {name:"MizahBot", replies:["Gülme garantili 😄","Patladım buna 😂","Chat kahkaha attı"]},
+    {name:"GizemBot", replies:["Burada bir enerji var 👁️","Bir şeyler olacak hissediyorum","İlginç... devam et"]}
+];
 
-<!-- Tawk Chat Entegrasyonu -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6991af8aa37ee31c36e22e8b/1jhghbd50';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+function systemMessage(text){
+    chat.innerHTML += "<div class='message system'>[Sistem]: "+text+"</div>";
+    chat.scrollTop = chat.scrollHeight;
+}
+
+function botMessage(name,text){
+    chat.innerHTML += "<div class='message bot'>"+name+": "+text+"</div>";
+    chat.scrollTop = chat.scrollHeight;
+}
+
+function userMessage(text){
+    chat.innerHTML += "<div class='message user'>Sen: "+text+"</div>";
+    chat.scrollTop = chat.scrollHeight;
+}
+
+function send(){
+    let input = document.getElementById("input");
+    let text = input.value;
+
+    if(text.trim() === "") return;
+
+    // Küfür filtresi
+    let lower = text.toLowerCase();
+    for(let word of badWords){
+        if(lower.includes(word)){
+            systemMessage("⚠️ Küfür yasak kardeşim.");
+            input.value="";
+            return;
+        }
+    }
+
+    userMessage(text);
+
+    // XP sistemi
+    xp += 10;
+    msgCount++;
+
+    if(xp >= level*100){
+        level++;
+        systemMessage("🎉 Level atladın! Yeni seviye: "+level);
+    }
+
+    updateStats();
+
+    // Rastgele bot cevap
+    setTimeout(randomBotReply, 800);
+
+    input.value="";
+}
+
+function randomBotReply(){
+    let randomBot = bots[Math.floor(Math.random()*bots.length)];
+    let randomReply = randomBot.replies[Math.floor(Math.random()*randomBot.replies.length)];
+    botMessage(randomBot.name, randomReply);
+}
+
+function updateStats(){
+    document.getElementById("xp").innerText = xp;
+    document.getElementById("level").innerText = level;
+    document.getElementById("msgCount").innerText = msgCount;
+}
+
+window.onload = function(){
+    systemMessage("Hoş geldin 👋 Topluluk alanına giriş yaptın.");
+    systemMessage("Mesaj atarak XP kazanırsın.");
+}
+
 </script>
 
 </body>
