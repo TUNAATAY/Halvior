@@ -3,269 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Halvior Prime Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+<title>Halvior Premium Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-/* --- AYARLAR VE RENKLER --- */
 :root {
-    --primary: #00ffcc; /* Halvior Yeşili */
-    --accent: #2e86de; /* Premium Mavi */
-    --bg-gradient: linear-gradient(135deg, #1c1c1c 0%, #2d3436 100%); /* Siyah değil, Premium Koyu Gri */
-    --glass: rgba(255, 255, 255, 0.08);
-    --border: rgba(255, 255, 255, 0.1);
+    /* İSTEDİĞİN MAVİ YEŞİL KARIŞIMI */
+    --main-color: #00ffcc; 
+    --bg-gradient: linear-gradient(135deg, #002d2d 0%, #001a1a 50%, #004d40 100%);
+    --glass: rgba(255, 255, 255, 0.05);
 }
 
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: var(--bg-gradient);
-    color: white;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Yatay Ortala */
-    justify-content: center; /* Dikey Ortala */
+    align-items: center;
+    justify-content: center;
+    color: white;
     overflow: hidden;
 }
 
-/* Arka Plana Hafif Desen (Sadelik bozulmadan) */
-body::after {
+/* Premium Parıltı Efekti */
+body::before {
     content: "";
     position: absolute;
-    width: 100%; height: 100%;
-    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 30px 30px;
+    width: 150%; height: 150%;
+    background: radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, transparent 70%);
     z-index: -1;
+    animation: rotate 20s linear infinite;
 }
 
-/* --- ORTA ALAN (BAŞLIK & BUTONLAR) --- */
-.center-container {
+@keyframes rotate { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
+
+.container {
     text-align: center;
     z-index: 10;
-    padding: 20px;
-    max-width: 600px;
-    width: 100%;
+    width: 90%;
+    max-width: 800px;
 }
 
 h1 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 56px;
-    margin: 0 0 10px 0;
-    letter-spacing: 3px;
-    background: linear-gradient(to right, #fff, #b2bec3);
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(40px, 8vw, 70px);
+    margin: 0;
+    background: linear-gradient(to bottom, #fff, var(--main-color));
     -webkit-background-clip: text;
     color: transparent;
-    text-transform: uppercase;
+    filter: drop-shadow(0 0 15px rgba(0,255,204,0.4));
+    letter-spacing: 5px;
 }
 
-p.status {
-    color: #a4b0be;
-    font-size: 14px;
+.tagline {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--main-color);
     margin-bottom: 40px;
-    letter-spacing: 1px;
+    opacity: 0.8;
 }
 
-.button-grid {
+/* BUTONLAR */
+.btn-group {
     display: flex;
-    justify-content: center; /* Butonları Ortala */
-    flex-wrap: wrap; /* Mobilde alt alta geçsin */
+    flex-wrap: wrap;
     gap: 15px;
+    justify-content: center;
 }
 
-.main-btn {
+.btn {
+    padding: 15px 35px;
+    border: 1px solid rgba(0, 255, 204, 0.3);
     background: var(--glass);
-    border: 1px solid var(--border);
     color: white;
-    padding: 14px 30px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
     text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
     font-size: 13px;
-    min-width: 140px; /* Butonlar eşit boyda dursun */
+    letter-spacing: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.4s;
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+    min-width: 180px;
 }
 
-.main-btn:hover {
-    background: var(--primary);
-    color: #1c1c1c;
-    border-color: var(--primary);
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
-    transform: translateY(-2px);
+.btn:hover {
+    background: var(--main-color);
+    color: #000;
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+    transform: scale(1.05);
 }
 
-/* --- SAHTE CHAT KUTUSU (SOL TARAF) --- */
-.chat-widget {
+/* EN SON VİDEOLAR BUTONU (Özel Renk) */
+.btn-last {
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* CHAT KUTUSU (BOTLAR) */
+.chat-box {
     position: absolute;
-    left: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 260px;
-    height: 350px;
-    background: rgba(20, 20, 20, 0.8);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    bottom: 20px;
+    left: 20px;
+    width: 280px;
+    height: 250px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .chat-header {
-    padding: 12px;
-    background: rgba(255,255,255,0.05);
-    font-size: 12px;
-    font-weight: bold;
-    color: var(--primary);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
+    padding: 10px;
+    font-size: 10px;
+    font-family: 'Orbitron', sans-serif;
+    border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+    color: var(--main-color);
 }
 
-.chat-feed {
+.chat-content {
     flex: 1;
     padding: 10px;
-    overflow-y: hidden; /* Otomatik kayıyor zaten */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
 
-.msg {
+.chat-msg {
     font-size: 11px;
-    margin-bottom: 8px;
-    opacity: 0;
-    animation: slideIn 0.4s forwards;
-    line-height: 1.4;
+    margin-bottom: 6px;
+    animation: fadeIn 0.3s ease-out;
 }
 
-.msg strong {
-    color: #74b9ff; /* İsim Rengi */
-    margin-right: 5px;
-}
+@keyframes fadeIn { from {opacity: 0; transform: translateY(5px);} to {opacity: 1; transform: translateY(0);} }
 
-.msg span {
-    color: #dfe6e9; /* Mesaj Rengi */
-}
-
-@keyframes slideIn {
-    from { transform: translateX(-10px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-/* --- MOBİL UYUMU --- */
+/* MOBİL İÇİN ÖZEL AYARLAR */
 @media (max-width: 768px) {
-    .chat-widget {
-        display: none; /* Mobilde chat kalabalık yapmasın, gizledim */
+    .chat-box {
+        width: 180px;
+        height: 150px;
+        font-size: 9px;
+        left: 10px;
+        bottom: 80px; /* Tawk'ın üstünde kalsın */
     }
-    
-    h1 {
-        font-size: 42px;
-    }
-    
-    .button-grid {
-        flex-direction: column; /* Mobilde alt alta */
-        align-items: center;
-    }
-    
-    .main-btn {
-        width: 80%; /* Butonlar genişlesin */
-    }
+    .btn { width: 100%; }
 }
 </style>
 </head>
 <body>
 
-    <div class="center-container">
-        <h1>HALVIOR</h1>
-        <p class="status">/// OFFICIAL COMMUNITY HUB ///</p>
-        
-        <div class="button-grid">
-            <button class="main-btn" onclick="window.open('https://www.youtube.com/@Halvior')">YouTube</button>
-            <button class="main-btn" onclick="Tawk_API.toggle()">Canlı Destek</button>
-            <button class="main-btn" onclick="alert('Discord Yakında!')">Discord</button>
-        </div>
+<div class="container">
+    <h1>HALVIOR</h1>
+    <div class="tagline">PREMIUM CONTENT & COMMUNITY</div>
+    
+    <div class="btn-group">
+        <button class="btn btn-last" onclick="window.open('https://www.youtube.com/@Halvior/videos')">EN SON VİDEOLAR</button>
+        <button class="btn" onclick="window.open('https://www.youtube.com/@Halvior')">YOUTUBE</button>
+        <button class="btn" onclick="Tawk_API.toggle()">CANLI SOHBET</button>
+        <button class="btn" onclick="alert('Yakında!')">DISCORD</button>
     </div>
+</div>
 
-    <div class="chat-widget" id="chatWidget">
-        <div class="chat-header">
-            <span>CANLI AKIŞ</span>
-            <span style="color:#00ffcc">● 12 Online</span>
-        </div>
-        <div class="chat-feed" id="feed">
-            </div>
-    </div>
+<div class="chat-box">
+    <div class="chat-header">COMMUNITY STREAM ●</div>
+    <div class="chat-content" id="stream"></div>
+</div>
 
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6991af8aa37ee31c36e22e8b/1jhghbd50';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6991af8aa37ee31c36e22e8b/1jhghbd50';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
 
-    <script>
-        const feed = document.getElementById('feed');
+<script>
+    const stream = document.getElementById('stream');
+    const bots = [
+        "HalviorFan", "CS2_Pro", "ToxicKing", "MemeLord", "SilverGuy", 
+        "GlobalElite", "Admin_Yancisi", "Sessiz_Izleyici", "Kebapci", "Ghost",
+        "Noob_Master", "Edit_Kralı", "Shitposter", "Skin_Collector"
+    ];
+    const texts = [
+        "Video efsane kanka", "CS2 ne zaman gircez?", "Sa", "As", "Admin bak bi", 
+        "Site çok premium olmuş", "Link atsanıza", "Ooo Halvior sahalarda",
+        "Yeni edit ateş ediyor", "Rank ne beyler?", "Elo kasmaca", "Botlar harbi konuşuyor"
+    ];
 
-        // 12 Farklı Bot Karakteri
-        const bots = [
-            { name: "HalviorFan_99", color: "#fab1a0" }, // Turuncu
-            { name: "CS2_Destroyer", color: "#55efc4" }, // Yeşil
-            { name: "Toxic_Ahmet", color: "#ff7675" },   // Kırmızı
-            { name: "Meme_Lordu", color: "#a29bfe" },    // Mor
-            { name: "Silver_Player", color: "#dfe6e9" }, // Gri
-            { name: "Mod_Bot", color: "#ffeaa7" },       // Sarı (Admin gibi)
-            { name: "SniperWolf", color: "#74b9ff" },    // Mavi
-            { name: "Kebab_Enjoyer", color: "#fdcb6e" }, 
-            { name: "Rush_B_Cyka", color: "#e17055" },
-            { name: "Anonim_User", color: "#b2bec3" },
-            { name: "FPS_Drop", color: "#636e72" },
-            { name: "Yayıncı_Takip", color: "#00b894" }
-        ];
+    function addMsg() {
+        const b = bots[Math.floor(Math.random()*bots.length)];
+        const t = texts[Math.floor(Math.random()*texts.length)];
+        const d = document.createElement('div');
+        d.className = 'chat-msg';
+        d.innerHTML = `<span style="color:#00ffcc; font-weight:bold;">${b}:</span> ${t}`;
+        stream.appendChild(d);
+        if(stream.childElementCount > 6) stream.removeChild(stream.firstChild);
+    }
+    setInterval(addMsg, 3000);
+</script>
 
-        const chatMessages = [
-            "Selam beyler", "Halvior yeni video attı mı?", "Admin baksana bi", 
-            "Site efsane olmuş eline sağlık", "CS girecek var mı?", "Rank düştük yine aq",
-            "Burası baya kalabalık", "Discord linki nerde?", "Hile dolu oyun ya",
-            "Tasarım premium duruyor", "Selamun aleyküm", "Botlar çok zeki :D",
-            "Yayın ne zaman?", "Shitpost atsanıza", "Bruh moment", "Desteğe yazdım bakan yok mu?",
-            "Burası resmi site mi?", "Evet resmi site.", "Lag var mı sizde?",
-            "FPS arttırma videosu işe yaradı eyw"
-        ];
-
-        function addMessage() {
-            // Rastgele bot ve mesaj seç
-            const bot = bots[Math.floor(Math.random() * bots.length)];
-            const text = chatMessages[Math.floor(Math.random() * chatMessages.length)];
-
-            // HTML Oluştur
-            const div = document.createElement('div');
-            div.className = 'msg';
-            div.innerHTML = `<strong style="color:${bot.color}">${bot.name}:</strong> <span>${text}</span>`;
-
-            feed.appendChild(div);
-
-            // Çok mesaj birikmesin, eskileri sil
-            if (feed.children.length > 7) {
-                feed.removeChild(feed.children[0]);
-            }
-        }
-
-        // İlk açılışta boş durmasın diye 3 mesaj ekle
-        setTimeout(() => addMessage(), 500);
-        setTimeout(() => addMessage(), 1500);
-        setTimeout(() => addMessage(), 2500);
-
-        // Her 2.5 saniyede bir yeni mesaj
-        setInterval(addMessage, 2500);
-
-    </script>
 </body>
 </html>
